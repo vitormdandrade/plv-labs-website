@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLV Labs — Software que trabalha para pequenos negócios</title>
+  <meta name="description" content="PLV Labs é uma startup brasileira que desenvolve soluções de software com IA para pequenos negócios. Conheça nossos produtos: Vence e OrçamentoZap." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-900: #0A3728;
+      --green-800: #0E4430;
+      --green-700: #135239;
+      --green-600: #1A6649;
+      --cream-50:  #FDFAF5;
+      --cream-100: #F5EDD8;
+      --cream-200: #EDE0C4;
+      --cream-400: #C8B896;
+      --cream-600: #9A8A6A;
+      --white:     #FFFFFF;
+
+      --font-sans: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+
+      --transition: 0.22s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--green-900);
+      color: var(--cream-100);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10, 55, 40, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(237, 224, 196, 0.08);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--cream-100);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--green-900);
+      letter-spacing: -0.5px;
+      transform: rotate(-4deg);
+      flex-shrink: 0;
+    }
+
+    .nav-wordmark {
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--cream-100);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--cream-400);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: var(--cream-100); }
+
+    .nav-cta {
+      background: var(--cream-100);
+      color: var(--green-900) !important;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-weight: 600 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--white) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26, 102, 73, 0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(26, 102, 73, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(237, 224, 196, 0.08);
+      border: 1px solid rgba(237, 224, 196, 0.16);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-400);
+      margin-bottom: 32px;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #4ADE80;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--cream-100);
+      max-width: 900px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--cream-400);
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--cream-400);
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--cream-100);
+      color: var(--green-900);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      letter-spacing: -0.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(237, 224, 196, 0.2);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream-400);
+      padding: 14px 32px;
+      border-radius: 100px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 1px solid rgba(237, 224, 196, 0.2);
+      transition: color var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .btn-ghost:hover {
+      color: var(--cream-100);
+      border-color: rgba(237, 224, 196, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--cream-600);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--cream-600), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 96px 24px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-600);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      color: var(--cream-100);
+    }
+
+    /* ── STATS ── */
+    .stats {
+      border-top: 1px solid rgba(237, 224, 196, 0.08);
+      border-bottom: 1px solid rgba(237, 224, 196, 0.08);
+      padding: 48px 24px;
+    }
+
+    .stats-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px;
+      border-right: 1px solid rgba(237, 224, 196, 0.08);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      color: var(--cream-100);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--cream-600);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* ── PRODUCTS ── */
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background: var(--green-800);
+      border: 1px solid rgba(237, 224, 196, 0.07);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), border-color var(--transition);
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(237, 224, 196, 0.16);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(237, 224, 196, 0.3), transparent);
+    }
+
+    .product-card-glow {
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream-600);
+      margin-bottom: 24px;
+    }
+
+    .product-tag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .product-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 24px;
+    }
+
+    .product-name {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--cream-100);
+      margin-bottom: 12px;
+    }
+
+    .product-desc {
+      font-size: 16px;
+      color: var(--cream-400);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .product-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 36px;
+    }
+
+    .product-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--cream-400);
+    }
+
+    .feature-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 10px;
+    }
+
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--cream-100);
+      text-decoration: none;
+      transition: gap var(--transition);
+    }
+
+    .product-link:hover { gap: 12px; }
+
+    .product-link svg {
+      transition: transform var(--transition);
+    }
+
+    .product-link:hover svg { transform: translateX(2px); }
+
+    /* ── MISSION ── */
+    .mission {
+      background: var(--green-800);
+      border-top: 1px solid rgba(237, 224, 196, 0.06);
+      border-bottom: 1px solid rgba(237, 224, 196, 0.06);
+    }
+
+    .mission-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .mission-body {
+      font-size: 18px;
+      color: var(--cream-400);
+      line-height: 1.7;
+      margin-top: 24px;
+    }
+
+    .mission-body strong {
+      color: var(--cream-100);
+      font-weight: 600;
+    }
+
+    .mission-values {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .value-card {
+      background: rgba(10, 55, 40, 0.5);
+      border: 1px solid rgba(237, 224, 196, 0.07);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: border-color var(--transition);
+    }
+
+    .value-card:hover {
+      border-color: rgba(237, 224, 196, 0.14);
+    }
+
+    .value-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cream-600);
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .value-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cream-100);
+      margin-bottom: 8px;
+    }
+
+    .value-desc {
+      font-size: 14px;
+      color: var(--cream-400);
+      line-height: 1.6;
+    }
+
+    /* ── TECH ── */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .tech-pill {
+      background: var(--green-800);
+      border: 1px solid rgba(237, 224, 196, 0.07);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--cream-400);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tech-pill span { font-size: 20px; }
+
+    /* ── CONTACT ── */
+    .contact-box {
+      background: var(--green-800);
+      border: 1px solid rgba(237, 224, 196, 0.07);
+      border-radius: var(--radius-xl);
+      padding: 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(26, 102, 73, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--cream-100);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .contact-box p {
+      font-size: 18px;
+      color: var(--cream-400);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 24px;
+      border-top: 1px solid rgba(237, 224, 196, 0.06);
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--cream-600);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--cream-600);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--cream-100); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(237, 224, 196, 0.12);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+
+      .hero { padding: 100px 20px 80px; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(237, 224, 196, 0.08); }
+      .stat-item:last-child { border-bottom: none; }
+
+      .products-grid { grid-template-columns: 1fr; }
+      .product-card { padding: 32px; }
+
+      .mission-inner { grid-template-columns: 1fr; gap: 48px; }
+
+      .contact-box { padding: 48px 24px; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">PLV</div>
+      <span class="nav-wordmark">PLV Labs</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#missao">Missão</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="mailto:contato@plvlabs.com.br" class="nav-cta">Fale conosco</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+<h1>Software que trabalha<br /><em>para quem trabalha</em></h1>
+    <p class="hero-sub">
+      Desenvolvemos produtos de software com inteligência artificial para pequenos negócios brasileiros gerenciarem mais e se preocuparem menos.
+    </p>
+    <div class="hero-actions">
+      <a href="#produtos" class="btn-primary">Conheça nossos produtos</a>
+      <a href="#missao" class="btn-ghost">Nossa missão</a>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Produtos ativos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Foco em pequenos negócios</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">BR</div>
+        <div class="stat-label">Feito no Brasil</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section id="produtos">
+    <div class="container">
+      <div class="products-header">
+        <div>
+          <div class="section-label">Nossos produtos</div>
+          <h2 class="section-title">Ferramentas simples<br />para problemas reais</h2>
+        </div>
+        <p style="font-size: 16px; color: var(--cream-400); max-width: 360px; line-height: 1.6;">
+          Cada produto nasce de uma dor específica de pequenos negócios brasileiros — resolvida com tecnologia moderna e interface que qualquer um entende.
+        </p>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Vence -->
+        <a href="#" class="product-card">
+          <div class="product-card-glow" style="background: #1A6649;"></div>
+          <div class="product-tag">
+            <span class="product-tag-dot" style="background: #4ADE80;"></span>
+            Disponível agora
+          </div>
+          <div class="product-icon" style="background: rgba(26, 102, 73, 0.3);">🏠</div>
+          <div class="product-name">Kiso</div>
+          <p class="product-desc">
+            Gestão de aluguéis sem dor de cabeça. Cobranças automáticas via PIX e boleto, controle de inquilinos e dashboard de pagamentos — para proprietários de 1 a 5 imóveis.
+          </p>
+          <ul class="product-features">
+            <li>
+              <div class="feature-check" style="background: rgba(74, 222, 128, 0.1); color: #4ADE80;">✓</div>
+              Cobranças automáticas via PIX e boleto
+            </li>
+            <li>
+              <div class="feature-check" style="background: rgba(74, 222, 128, 0.1); color: #4ADE80;">✓</div>
+              Cadastro de imóveis e inquilinos
+            </li>
+            <li>
+              <div class="feature-check" style="background: rgba(74, 222, 128, 0.1); color: #4ADE80;">✓</div>
+              Dashboard de pagamentos em tempo real
+            </li>
+            <li>
+              <div class="feature-check" style="background: rgba(74, 222, 128, 0.1); color: #4ADE80;">✓</div>
+              App mobile para iOS e Android
+            </li>
+          </ul>
+          <span class="product-link">
+            Saiba mais
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- OrçamentoZap -->
+        <a href="https://orcamentozap.com.br" class="product-card">
+          <div class="product-card-glow" style="background: #25D366;"></div>
+          <div class="product-tag">
+            <span class="product-tag-dot" style="background: #25D366;"></span>
+            Disponível agora
+          </div>
+          <div class="product-icon" style="background: rgba(37, 211, 102, 0.12);">💬</div>
+          <div class="product-name">OrçamentoZap</div>
+          <p class="product-desc">
+            Orçamentos profissionais em 2 minutos, direto pelo WhatsApp. Pipeline de serviços, histórico de clientes e cobrança via PIX — feito para prestadores de serviço.
+          </p>
+          <ul class="product-features">
+            <li>
+              <div class="feature-check" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">✓</div>
+              Templates de orçamento personalizáveis
+            </li>
+            <li>
+              <div class="feature-check" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">✓</div>
+              Envio direto pelo WhatsApp
+            </li>
+            <li>
+              <div class="feature-check" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">✓</div>
+              Pipeline de serviços e clientes
+            </li>
+            <li>
+              <div class="feature-check" style="background: rgba(37, 211, 102, 0.1); color: #25D366;">✓</div>
+              Cobranças com PIX integrado
+            </li>
+          </ul>
+          <span class="product-link">
+            Acessar produto
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission" id="missao">
+    <div class="container">
+      <div class="mission-inner">
+        <div>
+          <div class="section-label">Nossa missão</div>
+          <h2 class="section-title">IA que resolve,<br />não que complica</h2>
+          <div class="mission-body">
+            <p>
+              O Brasil tem mais de <strong>22 milhões de pequenas empresas</strong>. A maioria opera com planilhas, cadernos e WhatsApp — não por falta de ambição, mas porque o software disponível é caro, complexo ou feito para outras realidades.
+            </p>
+            <br />
+            <p>
+              Na PLV Labs, construímos software que <strong>qualquer pessoa consegue usar no primeiro dia</strong> e que traz resultado mensurável na semana seguinte. Inteligência artificial entra nos bastidores — automatizando o chato para o empreendedor focar no que importa.
+            </p>
+          </div>
+        </div>
+
+        <div class="mission-values">
+          <div class="value-card">
+            <div class="value-number">01</div>
+            <div class="value-title">Simples por princípio</div>
+            <p class="value-desc">Removemos complexidade até não sobrar mais nada para tirar. Cada tela, cada ação — justificada por um problema real.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-number">02</div>
+            <div class="value-title">Resultado antes de feature</div>
+            <p class="value-desc">Medimos sucesso em negócios salvos, horas recuperadas e dinheiro recebido — não em lista de funcionalidades.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-number">03</div>
+            <div class="value-title">Brasileiro de verdade</div>
+            <p class="value-desc">PIX, boleto, NFS-e, WhatsApp — construímos para a infraestrutura e os hábitos reais do mercado brasileiro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH -->
+  <section>
+    <div class="container">
+      <div class="section-label">Tecnologia</div>
+      <h2 class="section-title" style="max-width: 480px; margin-bottom: 0;">Stack moderna,<br />produto confiável</h2>
+
+      <div class="tech-grid">
+        <div class="tech-pill"><span>⚡</span> Flutter · iOS &amp; Android</div>
+        <div class="tech-pill"><span>🔷</span> TypeScript · Next.js</div>
+        <div class="tech-pill"><span>🤖</span> Claude · IA generativa</div>
+        <div class="tech-pill"><span>🗄️</span> Supabase · Postgres</div>
+        <div class="tech-pill"><span>💳</span> Asaas · PIX &amp; boleto</div>
+        <div class="tech-pill"><span>🚀</span> Fly.io · infraestrutura</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contato">
+    <div class="container">
+      <div class="contact-box">
+        <h2>Vamos construir<br />algo juntos?</h2>
+        <p>
+          Parcerias, investimento, imprensa ou só curiosidade — nossa caixa de entrada está aberta.
+        </p>
+        <div class="contact-actions">
+          <a href="mailto:contato@plvlabs.com.br" class="btn-primary">contato@plvlabs.com.br</a>
+          <a href="https://linkedin.com/company/plvlabs" class="btn-ghost">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="nav-logo-mark" style="transform: rotate(-4deg);">PLV</div>
+        <span class="footer-copy">© 2025 PLV Labs LTDA · CNPJ 66.394.393/0001-73</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#missao">Sobre</a></li>
+        <li><a href="mailto:contato@plvlabs.com.br">Contato</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
