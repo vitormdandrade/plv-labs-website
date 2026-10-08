@@ -51,6 +51,12 @@ footer a{color:var(--accent);text-decoration:none}
 <h2>2. Quais dados tratamos</h2>
 <p>Para operar o serviço tratamos: <strong>dados do prestador, clientes, orçamentos, serviços executados e cobranças</strong>.</p>
 <p>Assinaturas no aplicativo: Google Play ou App Store processam a compra conforme a plataforma utilizada. A RevenueCat auxilia na validação da compra e na identificação de assinaturas ativas. Para isso, tratamos o identificador interno da conta, identificadores e comprovantes técnicos da compra, histórico, períodos e situação da assinatura, além dos metadados técnicos necessários para operar essa integração. Esses dados permitem vincular a assinatura à sua conta, verificar acesso, restaurar compras e prestar suporte. Não armazenamos o número completo do cartão utilizado na loja.</p>
+<h3>Medição no aplicativo Android</h3>
+<p>Nas versões Android que oferecem a escolha de medição, a medição é opcional: usamos o <strong>Google Analytics para Firebase</strong> somente após seu consentimento para entender a origem das instalações, o uso do produto e o desempenho de campanhas. Você pode escolher <strong>Permitir medição</strong> ou <strong>Continuar sem rastreamento</strong>, na tela <strong>Medição opcional no Android</strong>; continuar sem permitir a medição não limita o acesso às funcionalidades, ao cadastro ou às compras. Antes do consentimento, não inicializamos essa medição nem armazenamos identificadores de medição locais, registros de ações ou a origem de campanhas para ela. Não recuperamos ações anteriores ao consentimento para enviá-las depois. Com a medição permitida, registramos a primeira abertura medida (<code>app_first_open</code>), o cadastro concluído (<code>signup_completed</code>), a criação e a abertura do compartilhamento do primeiro orçamento (<code>first_quote_created</code> e <code>first_quote_shared</code>), a ativação do profissional em até 48 horas da primeira abertura registrada localmente (<code>activated_professional</code>) e a visualização da oferta de assinatura (<code>paywall_viewed</code>). A primeira abertura medida não equivale, por si só, a uma nova instalação; abrir o WhatsApp não confirma o envio ou o recebimento da mensagem.</p>
+<p>A medição começa recusada enquanto não houver uma permissão salva válida. Sua escolha é guardada no aparelho e lembrada nas próximas aberturas, em condições normais; não pedimos uma nova permissão a cada abertura. Se você já permitiu a medição, essa permissão pode ser usada nas próximas aberturas até você mudar sua escolha em Ajustes.</p>
+<p>Os parâmetros personalizados desses eventos se limitam à categoria de origem da instalação (<code>acquisition_source</code>) e, quando reconhecida, à campanha (<code>campaign</code>). Eles não incluem conteúdo de orçamentos, nomes de clientes, e-mail, telefone ou identificadores de conta e orçamento. Identificadores transformados de conta e orçamento e marcadores de eventos são armazenados localmente para evitar contagens duplicadas, sem envio como parâmetros personalizados ao Analytics.</p>
+<p>Além desses eventos, o SDK pode coletar automaticamente o identificador da instância do aplicativo, dados técnicos do aplicativo e dispositivo (como versão, sistema operacional, modelo e idioma), sessões, visualizações de tela, interações e dados de campanha, além de localização aproximada derivada do endereço IP mascarado. Também pode registrar eventos de compras e assinaturas da Google Play, com informações como identificador e nome do produto, preço e moeda. Não usamos essa medição para obter a localização precisa por GPS. Esses dados de medição não são anônimos na origem: o identificador da instância permite relacionar eventos da mesma instalação.</p>
+<p>No SDK Android, a coleta do identificador de publicidade do Android está desativada. As opções de consentimento para armazenamento publicitário, uso de dados em publicidade e sinais de personalização de anúncios são mantidas como negadas. Isso não desativa os identificadores e eventos de análise descritos acima.</p>
 <p>Não coletamos dados sensíveis (origem racial ou étnica, convicção religiosa, opinião política, dados de saúde, biometria ou vida sexual) e não tratamos dados de menores de 18 anos de forma intencional.</p>
 <h2>3. Para que usamos</h2>
 <ol>
@@ -58,33 +64,39 @@ footer a{color:var(--accent);text-decoration:none}
   <li>executar as funcionalidades contratadas;</li>
   <li>processar pagamentos e assinaturas;</li>
   <li>enviar comunicações operacionais, avisos de cobrança e suporte;</li>
-  <li>medir uso e melhorar o produto, de forma agregada;</li>
+  <li>medir uso, melhorar o produto e avaliar o desempenho de campanhas e conversões, com relatórios agregados e o tratamento de dados de medição descrito nesta política;</li>
   <li>cumprir obrigações legais, regulatórias e exercer direitos em processo.</li>
 </ol>
 <h2>4. Base legal (LGPD)</h2>
 <p>Tratamos dados com base na <strong>execução de contrato</strong> (art. 7º, V), no <strong>cumprimento de obrigação legal</strong> (art. 7º, II), no <strong>legítimo interesse</strong> para segurança e melhoria do serviço (art. 7º, IX) e no <strong>consentimento</strong> (art. 7º, I) quando solicitado.</p>
 <h2>5. Com quem compartilhamos</h2>
-<p>Não vendemos dados pessoais. Compartilhamos apenas com operadores necessários para operar o serviço:</p>
+<p>Não vendemos dados pessoais. Compartilhamos com os provedores abaixo para operar o serviço e para as finalidades de medição descritas nesta seção:</p>
 <ul>
   <li><strong>Supabase</strong> — banco de dados, autenticação e armazenamento;</li>
   <li><strong>Vercel</strong> e <strong>Fly.io</strong> — hospedagem de site e servidores de aplicação;</li>
   <li><strong>Asaas</strong> — processamento de pagamentos e cobranças;</li>
   <li><strong>RevenueCat</strong> — validação de compras nas lojas, histórico e situação das assinaturas e vinculação do acesso à conta, como operadora necessária para essas funcionalidades;</li>
-  <li><strong>Google Analytics / Google Play Services</strong> — métricas de uso e serviços do sistema operacional;</li>
+  <li><strong>Google Analytics para Firebase / Google Play Services</strong> — medição de instalações, uso e eventos automáticos no Android, conforme descrito acima, e serviços do sistema operacional. A integração com <strong>Google Ads</strong> permite avaliar o desempenho de campanhas e conversões, sem habilitar os sinais publicitários negados no SDK Android;</li>
   <li><strong>Meta/WhatsApp ou Z-API</strong> — envio de mensagens quando o produto oferece essa função;</li>
   <li><strong>Firebase</strong> — infraestrutura de aplicativos, quando aplicável.</li>
 </ul>
+<p>Para os dados de medição, a opção de compartilhar dados de medição para melhorar os produtos e serviços do Google está desativada nesta conta do Analytics. Permanecem habilitadas as contribuições de modelagem e comparações agregadas, o suporte técnico e as recomendações para o negócio. Desativar a primeira opção não elimina o tratamento necessário ao Analytics nem o fluxo para outros produtos vinculados, como o Google Ads; a personalização de anúncios no vínculo com o Google Ads permanece desativada. Os sinais publicitários do SDK Android também permanecem negados.</p>
 <p>Esses provedores podem processar dados fora do Brasil, com garantias contratuais de proteção compatíveis com a LGPD.</p>
 <h2>6. Por quanto tempo guardamos</h2>
 <p>Mantemos os dados enquanto a conta estiver ativa e, após o encerramento, pelo prazo necessário para cumprir obrigações legais, fiscais e regulatórias (em regra até 5 anos) ou para exercício regular de direitos.</p>
+<p>A medição do Android segue os controles de retenção do Google Analytics configurados na data desta revisão: <strong>eventos: 2 meses; usuários: 14 meses</strong>, com renovação do prazo dos identificadores de usuário a cada nova atividade. Esses controles não se aplicam aos relatórios agregados padrão do Analytics. Os marcadores de medição e identificadores transformados mantidos no dispositivo permanecem no armazenamento local até sua remoção.</p>
 <h2>7. Seus direitos</h2>
 <p>Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, eliminação, portabilidade e informação sobre compartilhamentos (art. 18 da LGPD). Envie o pedido para <a href="mailto:admin@plvlabs.com.br">admin@plvlabs.com.br</a> — respondemos em até 15 dias.</p>
+<p>Nas versões Android que oferecem a escolha de medição, você pode alterar sua permissão em <strong>Ajustes</strong>, na opção <strong>Medição opcional no Android</strong>. Ao retirar o consentimento, o app recusa imediatamente novos eventos personalizados de medição neste uso do app, tenta salvar a recusa para as próximas aberturas, invalidar a permissão anterior e remover os identificadores de medição locais e os registros de ações pendentes. Essas tentativas de gravação, exclusão e redefinição local podem falhar. Também solicita ao Firebase a desativação da coleta, a recusa do armazenamento de análise e a redefinição dos dados locais do SDK. A confirmação desses pedidos indica apenas sua submissão: não comprova a conclusão do trabalho assíncrono do SDK nem garante que todo tráfego de medição já tenha cessado. Requisições que já tenham sido enviadas antes da retirada não podem ser canceladas retroativamente; a retirada não apaga automaticamente os dados já enviados ao Analytics. A exclusão da conta não apaga automaticamente os dados de medição já enviados ao Analytics, pois não vinculamos o identificador da instância à conta nesse serviço. Solicitações sobre dados já enviados devem ser encaminhadas ao contato acima. Remover dados locais ou redefinir o SDK não equivale a excluir dados dos servidores do Google. Ao apagar o armazenamento do aplicativo, sua escolha local também é removida e uma versão com medição opcional deve solicitar novamente sua permissão antes de coletar.</p>
+<p>Se uma falha no armazenamento do aparelho impedir todas as gravações e exclusões necessárias e uma permissão anterior continuar legível, essa permissão pode voltar ao reiniciar o app. Conforme a falha, o app mostra os avisos: “Não foi possível salvar sua escolha. A medição está recusada neste uso do app. Tente novamente.” ou “Não foi possível confirmar a recusa para a próxima abertura do app. Uma permissão anterior pode voltar ao reiniciar.”.</p>
+<p>Se houver falha ao pedir a parada ao SDK, a medição automática pode continuar ativa mesmo com a recusa indicada no app. O aviso é: “Não foi possível confirmar o pedido de parada da medição automática. Ela pode continuar ativa. Tente novamente; isso não apaga dados já enviados.”.</p>
+<p>Nessas situações, o app mantém um aviso visível após a escolha e em Ajustes, mesmo depois de fechar a explicação. Use <strong>Tentar novamente sem rastreamento</strong> para tentar registrar a recusa e pedir novamente a parada; essa tentativa não permite novamente a medição e não garante, por si só, a resolução da falha. Você pode continuar usando as funcionalidades do app.</p>
 <h2>8. Exclusão de conta</h2>
 <p>Você pode excluir sua conta e seus dados diretamente no produto ou pelo e-mail acima. O passo a passo está em <a href="https://plvlabs.com.br/exclusao-de-conta">plvlabs.com.br/exclusao-de-conta</a>.</p>
 <h2>9. Segurança</h2>
 <p>Usamos conexões criptografadas (TLS), autenticação com senha e/ou provedor externo, controles de acesso por perfil e políticas de acesso restrito no banco de dados (RLS). Nenhum sistema é infalível: se ocorrer incidente relevante, comunicaremos você e a ANPD conforme a lei.</p>
 <h2>10. Cookies</h2>
-<p>Usamos cookies e armazenamento local estritamente necessários para login e funcionamento. Cookies de medição só são usados de forma agregada.</p>
+<p>Usamos cookies e armazenamento local necessários para login e funcionamento. No Android, a medição também usa identificadores e armazenamento local, conforme descrito acima. Métricas podem ser apresentadas de forma agregada; isso não significa que os dados de medição sejam anônimos na origem.</p>
 <h2>11. Alterações</h2>
 <p>Podemos atualizar esta política. A data de revisão no rodapé é sempre a versão vigente; mudanças materiais são comunicadas no produto ou por e-mail.</p>
 <p>Dúvidas: <a href="mailto:admin@plvlabs.com.br">admin@plvlabs.com.br</a>.</p>
@@ -92,7 +104,7 @@ footer a{color:var(--accent);text-decoration:none}
 </main>
 <footer><div class="wrap">
   <p><strong>PLV LABS LTDA</strong> · CNPJ 66.394.393/0001-73 · admin@plvlabs.com.br</p>
-  <p>Última atualização: 6 de outubro de 2026</p>
+  <p>Última atualização: 7 de outubro de 2026</p>
 </div></footer>
 </body>
 </html>
