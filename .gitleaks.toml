@@ -1,0 +1,7 @@
+title = "App Machine secrets policy (plv-labs-website)"
+
+# Blocks new credentials. Legacy findings, when this repository has any, are
+# listed at the bottom of this file (founder decision 2026-11-22: no rotation,
+# no history rewrite).
+[extend]
+useDefault = true

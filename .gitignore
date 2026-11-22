@@ -1,1 +1,38 @@
 .vercel
+
+# >>> secrets-guard: never commit credentials >>>
+# Signing material and store credentials
+*.jks
+*.keystore
+*.p12
+*.p8
+*.pfx
+*.p7b
+*.mobileprovision
+*.provisionprofile
+key.properties
+upload_certificate.pem
+# Firebase / Google Cloud private configuration
+google-services.json
+GoogleService-Info.plist
+*-adminsdk-*.json
+*service-account*.json
+*service_account*.json
+# Environment files (the example/template variants stay tracked)
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+!.env.sample
+!.env.template
+!.env.dist
+!*.env.example
+!*.env.sample
+!*.env.template
+!*.env.dist
+# Registry and CLI credential files
+.npmrc
+.netrc
+.pypirc
+# <<< secrets-guard: never commit credentials <<<

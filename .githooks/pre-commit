@@ -1,0 +1,21 @@
+#!/bin/sh
+# Secrets guard: block a commit that introduces a credential.
+# Opt in once per clone with:  git config core.hooksPath .githooks
+# Opt out with:                git config --unset core.hooksPath
+set -eu
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "secrets-guard: gitleaks not found, skipping the check (install: brew install gitleaks)" >&2
+  exit 0
+fi
+
+if gitleaks git . --staged --redact --config .gitleaks.toml >/dev/null 2>&1; then
+  exit 0
+fi
+
+echo "" >&2
+echo "secrets-guard: commit blocked - the staged changes look like they contain a secret." >&2
+echo "  Run  gitleaks git . --staged --verbose  to see which line is flagged." >&2
+echo "  Credentials belong in ~/.hermes/.env locally, or in GitHub Actions secrets / Vercel env vars." >&2
+echo "" >&2
+exit 1
