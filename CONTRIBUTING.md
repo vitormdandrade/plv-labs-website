@@ -27,3 +27,17 @@ If a credential does reach a commit: rotate it first, then say which credential 
 landed. Never rewrite history on your own — that is a founder decision.
 
 <!-- secrets-guard: end -->
+
+## Legal pages follow one manifest
+
+`legal_standard.json` at the repository root is the single record of company, entity, CNPJ,
+contact address and the privacy / terms / deletion URL of every product. The pages themselves
+are the static HTML in `kiso/`, `orcamentozap/` and `payflo/` plus the three root pages.
+
+- Change the standard in the manifest first, then bring the pages in line with it.
+- Run `python3 -m unittest discover -s tests -v` before opening a pull request. The suite fails
+  when a declared page is missing, when its body stops carrying the entity, the CNPJ or the
+  contact, when a legal page names the other company, when a link points at an unpublished
+  page, or when a placeholder is left behind.
+- A new product needs a folder with the three pages and an entry in `legal_standard.json`.
+  The suite fails on a product folder that the manifest does not list.

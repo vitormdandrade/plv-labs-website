@@ -1,0 +1,36 @@
+{
+  "company": "PLV Labs",
+  "legal_entity": "PLV LABS LTDA",
+  "cnpj": "66.394.393/0001-73",
+  "root": "https://plvlabs.com.br",
+  "contact_email": "admin@plvlabs.com.br",
+  "forbidden_company_tokens": [
+    "Consistency Labs",
+    "45.394.272/0001-51"
+  ],
+  "company_pages": {
+    "privacy_url": "https://plvlabs.com.br/privacidade",
+    "terms_url": "https://plvlabs.com.br/termos",
+    "deletion_url": "https://plvlabs.com.br/exclusao-de-conta"
+  },
+  "products": [
+    {
+      "slug": "kiso",
+      "privacy_url": "https://plvlabs.com.br/kiso/privacidade",
+      "terms_url": "https://plvlabs.com.br/kiso/termos",
+      "deletion_url": "https://plvlabs.com.br/kiso/exclusao-de-conta"
+    },
+    {
+      "slug": "orcamentozap",
+      "privacy_url": "https://plvlabs.com.br/orcamentozap/privacidade",
+      "terms_url": "https://plvlabs.com.br/orcamentozap/termos",
+      "deletion_url": "https://plvlabs.com.br/orcamentozap/exclusao-de-conta"
+    },
+    {
+      "slug": "payflo",
+      "privacy_url": "https://plvlabs.com.br/payflo/privacidade",
+      "terms_url": "https://plvlabs.com.br/payflo/termos",
+      "deletion_url": "https://plvlabs.com.br/payflo/exclusao-de-conta"
+    }
+  ]
+}
